@@ -4,22 +4,33 @@ import matter from "gray-matter";
 
 const postsDirectory = path.join(process.cwd(), "src/contents");
 
-export function getSortedPosts() {
+export function getAllPosts() {
   const filenames = fs.readdirSync(postsDirectory);
 
-  const posts = filenames.map((filename) => {
+  return filenames.map((filename) => {
     const filePath = path.join(postsDirectory, filename);
     const fileContents = fs.readFileSync(filePath, "utf8");
-    const { data } = matter(fileContents);
+    const { data, content } = matter(fileContents);
 
     return {
+      content,
       slug: filename.replace(/\.md$/, ""),
       title: data.title,
       date: data.date,
     };
   });
+}
 
-  return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
+export function getRandomPost() {
+  const posts = getAllPosts();
+
+  const randomIndex = Math.floor(Math.random() * posts.length);
+
+  return posts[randomIndex];
+}
+
+export function getSortedPosts() {
+  return getAllPosts().sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
 export function getPostBySlug(slug) {
