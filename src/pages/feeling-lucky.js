@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getRandomPost } from "@/utils";
 import { remark } from "remark";
 import html from "remark-html";
+import styles from "@/styles/BlogPost.module.css";
 
 export async function getServerSideProps() {
   const post = getRandomPost();
@@ -18,16 +19,18 @@ export async function getServerSideProps() {
 
 export default function FeelingLucky({ post }) {
   return (
-    <div>
-      <h1>Feeling Lucky: {post.title}</h1>
+    <div className={styles.blogPostContainer}>
+      <h1>{post.title}</h1>
       <div>
         Back to <Link href="/">Home</Link>
       </div>
       <br />
-      <br />
       <p>Published at: {post.date}</p>
       <br />
-      <div dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
+      <div
+        className={styles.blogPost}
+        dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+      />
     </div>
   );
 }

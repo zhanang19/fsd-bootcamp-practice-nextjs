@@ -1,0 +1,30 @@
+.blogPostContainer {
+  max-width: 800px;
+  margin: 35px auto;
+  padding: 25px;
+  background-color: #fff;
+  color: #333;
+}
+
+.blogPost p {
+  line-height: 1.6;
+  font-size: 1.125rem;
+  margin-bottom: 15px;
+}
+
+.blogPost ul,
+.blogPost ol {
+  margin-bottom: 15px;
+  padding-left: 20px;
+}
+
+.blogPost pre {
+  background-color: #2d2d2d;
+  color: #f1f1f1;
+  padding: 20px;
+  border-radius: 6px;
+  overflow: auto;
+  white-space: pre-wrap;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
